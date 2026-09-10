@@ -9,7 +9,7 @@ const InvitationMessage = ({ onNext }) => {
           {/* Chapter Badge */}
           <div className="chapter-badge">
             <span className="dot" />
-            <span>SHUBH NIMANTRAN • शुभ निमंत्रण</span>
+            <span>SHUBH NIMANTRAN</span>
             <span className="dot" />
           </div>
 
@@ -39,7 +39,7 @@ const InvitationMessage = ({ onNext }) => {
             <span className="line" />
           </div>
 
-          <p className={styles.line3}>we welcome you with</p>
+          <p className={styles.line3}>we welcome you and your family with</p>
           <p className={styles.line4}>love and devotion</p>
           <p className={styles.line5}>to seek blessings of</p>
           <h3 className={styles.line6}>Lord Ganesha</h3>

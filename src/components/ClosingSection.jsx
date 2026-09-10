@@ -10,7 +10,7 @@ const ClosingSection = ({ onShare }) => {
           {/* Chapter Badge */}
           <div className="chapter-badge">
             <span className="dot" />
-            <span>BLESSINGS • आशीर्वाद</span>
+            <span>BLESSINGS</span>
             <span className="dot" />
           </div>
 
@@ -40,24 +40,13 @@ const ClosingSection = ({ onShare }) => {
           {/* Host Signoff */}
           <div className={styles.signatureContainer}>
             <p className={styles.regards}>Regards</p>
-            <p className={styles.name}>Amit Shah & Family</p>
+            <p className={styles.name}>• Ravindra Shah • Shital Shah • Amit Shah</p>
+            <p className={styles.name}>• Poonam Shah • Manthan R. Shah</p>
           </div>
 
           {/* Central Devotional Glowing Diya */}
           <div className={styles.diyaWrapper}>
             <DiyaIcon size={64} />
-          </div>
-
-          {/* Share Invitation Action on Final Page */}
-          <div className={styles.shareActionWrapper}>
-            <button
-              className={styles.shareInvitationBtn}
-              onClick={onShare}
-              aria-label="Share this digital Ganpati invitation"
-            >
-              <span>SHARE INVITATION</span>
-              <span className={styles.shareBtnIcon}>📤</span>
-            </button>
           </div>
 
           {/* Subtle Bottom Inscription */}

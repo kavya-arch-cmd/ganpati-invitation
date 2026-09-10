@@ -7,6 +7,7 @@ import NavigationControls from './components/NavigationControls';
 import Toast from './components/Toast';
 
 import OpeningScreen from './components/OpeningScreen';
+import ShlokSlide from './components/ShlokSlide';
 import GanpatiHero from './components/GanpatiHero';
 import Celebration25 from './components/Celebration25';
 import InvitationMessage from './components/InvitationMessage';
@@ -24,7 +25,15 @@ function App() {
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
-  const totalPages = 7;
+  // Page 1: Cover
+  // Page 2: Shlok
+  // Page 3: Ganpati Hero
+  // Page 4: Celebration 25
+  // Page 5: Invitation Message
+  // Page 6: Event Details
+  // Page 7: Location
+  // Page 8: Closing
+  const totalPages = 8;
 
   // Show subtle toast notification
   const showToast = useCallback((msg) => {
@@ -35,25 +44,31 @@ function App() {
     }, 2800);
   }, []);
 
-  // Handler for OPEN INVITATION CTA on Page 1
+  // Handler for OPEN INVITATION CTA on Page 1 — goes directly to Shlok slide, NO curtain here
   const handleOpenInvitation = () => {
-    setIsCurtainOpening(true);
-
     // Start background music at 00:25 as specified
     if (musicRef.current) {
       musicRef.current.startAt25s();
     }
 
-    // Advance to Page 2 (Ganpati Reveal) with curtain opening sequence
+    // Advance immediately to Page 2 (Shlok slide) — no curtain on this transition
+    setCurrentPage(2);
+  };
+
+  // Handler for CONTINUE on Shlok Slide (Page 2) — curtain opens HERE, then shows Ganpati
+  const handleShlokContinue = useCallback(() => {
+    setIsCurtainOpening(true);
+
+    // Advance to Page 3 (Ganpati Reveal) mid-curtain
     setTimeout(() => {
-      setCurrentPage(2);
+      setCurrentPage(3);
     }, 600);
 
     // Clean up curtain state after opening completes
     setTimeout(() => {
       setIsCurtainOpening(false);
     }, 2500);
-  };
+  }, []);
 
   const handleNext = useCallback(() => {
     if (currentPage < totalPages) {
@@ -119,7 +134,11 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        handleNext();
+        if (currentPage === 2) {
+          handleShlokContinue();
+        } else {
+          handleNext();
+        }
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         handlePrev();
       }
@@ -127,7 +146,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleNext, handlePrev]);
+  }, [handleNext, handlePrev, handleShlokContinue, currentPage]);
 
   // Touch Swipe Navigation for mobile
   const handleTouchStart = (e) => {
@@ -148,6 +167,8 @@ function App() {
         // Swiped Left -> Next Page
         if (currentPage === 1) {
           handleOpenInvitation();
+        } else if (currentPage === 2) {
+          handleShlokContinue();
         } else {
           handleNext();
         }
@@ -157,6 +178,11 @@ function App() {
       }
     }
   };
+
+  // Page 1 (cover) gets full-viewport class; interior pages get the nav-offset class
+  const stageClass = currentPage === 1
+    ? 'page-stage page-stage-cover'
+    : 'page-stage';
 
   return (
     <div
@@ -171,7 +197,7 @@ function App() {
       <FloatingPetals />
 
       {/* Floating Music Controller (starts at 00:25 on Open Invitation) */}
-      <MusicController ref={musicRef} />
+      <MusicController ref={musicRef} currentPage={currentPage} />
 
       {/* Ceremonial Curtain Reveal on Open Invitation */}
       <CurtainReveal isOpening={isCurtainOpening} />
@@ -179,20 +205,21 @@ function App() {
       {/* Toast Notification for Clipboard */}
       <Toast message={toastMessage} isVisible={isToastVisible} />
 
-      {/* Main Page Stage - Page-by-Page Digital Booklet Flow */}
+      {/* Main Page Stage */}
       <main
-        className="page-stage"
+        className={stageClass}
         key={currentPage}
       >
         {currentPage === 1 && (
           <OpeningScreen onOpenInvitation={handleOpenInvitation} />
         )}
-        {currentPage === 2 && <GanpatiHero onNext={handleNext} />}
-        {currentPage === 3 && <Celebration25 onNext={handleNext} />}
-        {currentPage === 4 && <InvitationMessage onNext={handleNext} />}
-        {currentPage === 5 && <EventDetails onNext={handleNext} />}
-        {currentPage === 6 && <LocationSection onNext={handleNext} />}
-        {currentPage === 7 && <ClosingSection onShare={handleShare} />}
+        {currentPage === 2 && <ShlokSlide onNext={handleShlokContinue} />}
+        {currentPage === 3 && <GanpatiHero onNext={handleNext} />}
+        {currentPage === 4 && <Celebration25 onNext={handleNext} />}
+        {currentPage === 5 && <InvitationMessage onNext={handleNext} />}
+        {currentPage === 6 && <EventDetails onNext={handleNext} />}
+        {currentPage === 7 && <LocationSection onNext={handleNext} />}
+        {currentPage === 8 && <ClosingSection onShare={handleShare} />}
       </main>
 
       {/* Elegant Bottom Navigation Controls */}

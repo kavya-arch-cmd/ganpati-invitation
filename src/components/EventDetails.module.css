@@ -48,6 +48,15 @@
   }
 }
 
+/* Single centred card layout (DATE only) */
+.gridSingle {
+  display: flex;
+  justify-content: center;
+  margin: 2rem auto 0;
+  max-width: 360px;
+  width: 100%;
+}
+
 .card {
   background: rgba(254, 250, 240, 0.94);
   border: 1.5px solid rgba(184, 134, 36, 0.45);

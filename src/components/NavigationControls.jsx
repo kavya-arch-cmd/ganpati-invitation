@@ -54,20 +54,9 @@ const NavigationControls = ({
           </span>
         </div>
 
-        {/* SHARE Button on final page only; no bottom NEXT button */}
+        {/* SHARE button removed per final slide correction — spacer keeps layout centred */}
         {isLast ? (
-          <button
-            className={`${styles.navBtn} ${styles.shareBtn}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              onShare();
-            }}
-            aria-label="Share this digital invitation"
-            title="Share Invitation"
-          >
-            <span className={styles.btnText}>SHARE</span>
-            <span className={styles.shareIcon}>📤</span>
-          </button>
+          <div className={styles.navSpacer} aria-hidden="true" />
         ) : (
           /* Spacer to keep PREV and dots aligned when there is no right-side button */
           <div className={styles.navSpacer} aria-hidden="true" />

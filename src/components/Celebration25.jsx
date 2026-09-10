@@ -10,10 +10,10 @@ const Celebration25 = ({ onNext }) => {
 
       <div className="section-container">
         <div className={`${styles.card} reveal-scale is-revealed`}>
-          {/* Chapter Badge */}
+          {/* Chapter Badge — Marathi "२५ वर्षे" removed per correction 4 */}
           <div className="chapter-badge">
             <span className="dot" />
-            <span>MILESTONE • २५ वर्षे</span>
+            <span>MILESTONE</span>
             <span className="dot" />
           </div>
 
@@ -54,8 +54,12 @@ const Celebration25 = ({ onNext }) => {
             <span className="line" />
           </div>
 
-          {/* Subtitle Message */}
-          <p className={styles.subtitle}>Celebrating 25 Years of Faith & Devotion</p>
+          {/* New approved paragraph — exact wording required */}
+          <p className={styles.subtitle}>
+            With the divine blessings of Lord Ganesha and our beloved parents,<br />
+            Laxmiben Manoharlal Shah &amp; Monoharlal Vitthaldas Shah,<br />
+            we proudly celebrate 25 blessed years of Ganpati Bappa's presence.
+          </p>
 
           <div className={styles.flourishCluster}>
             <span className={styles.clusterDot} />

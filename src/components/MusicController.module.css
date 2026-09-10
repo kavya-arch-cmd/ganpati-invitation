@@ -92,6 +92,12 @@
   }
 }
 
+/* Hide button on Slide 1 — audio element remains mounted and functional */
+.hiddenOnCover {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .equalizerBars span {
     animation: none;

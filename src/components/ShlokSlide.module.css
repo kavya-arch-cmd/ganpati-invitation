@@ -1,0 +1,145 @@
+/* ShlokSlide — ceremonial shlok reveal slide */
+
+.shlokSection {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(254, 250, 240, 0.96);
+  border: 1.5px solid rgba(184, 134, 36, 0.45);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card), 0 0 50px rgba(212, 168, 67, 0.14);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem) clamp(1.25rem, 4vw, 3rem);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Ceremonial entrance animation */
+  animation: shlokReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes shlokReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Soft divine glow ring behind the card */
+.glowRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 235, 160, 0.22) 0%,
+    rgba(212, 168, 67, 0.10) 50%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: -1;
+  animation: auraBreath 5s ease-in-out infinite;
+}
+
+@keyframes auraBreath {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.97); opacity: 0.8; }
+  50%       { transform: translate(-50%, -50%) scale(1.04); opacity: 1; }
+}
+
+/* OM symbol */
+.omWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.omSymbol {
+  font-family: var(--font-devanagari);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--color-gold-dark);
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(184, 134, 36, 0.3));
+  animation: omGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes omGlow {
+  from { filter: drop-shadow(0 2px 6px rgba(184, 134, 36, 0.25)); }
+  to   { filter: drop-shadow(0 2px 14px rgba(212, 168, 67, 0.55)); }
+}
+
+/* Shlok lines wrapper */
+.shlokWrapper {
+  margin: 0.25rem 0;
+}
+
+/* Individual shlok line */
+.shlokLine {
+  font-family: var(--font-devanagari);
+  font-size: clamp(1.2rem, 3.8vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* Staggered reveal for each line */
+.line1 {
+  animation: lineReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.line2 {
+  animation: lineReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+@keyframes lineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Translation caption — removed, no English text on this slide */
+
+@media (max-height: 640px) {
+  .card {
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+  }
+  .shlokLine {
+    font-size: clamp(1rem, 3.2vw, 1.4rem);
+  }
+  .omSymbol {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .line1,
+  .line2,
+  .glowRing,
+  .omSymbol {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

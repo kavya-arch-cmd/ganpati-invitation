@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react';
 import styles from './MusicController.module.css';
 
-const MusicController = forwardRef(({ autoStart = false }, ref) => {
+const MusicController = forwardRef(({ autoStart = false, currentPage = 1 }, ref) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
@@ -85,9 +85,9 @@ const MusicController = forwardRef(({ autoStart = false }, ref) => {
         onError={handleError}
       />
 
-      {/* Floating Music Toggle Button */}
+      {/* Floating Music Toggle Button — hidden on Slide 1 */}
       <button
-        className={`${styles.musicBtn} ${isPlaying ? styles.playing : ''}`}
+        className={`${styles.musicBtn} ${isPlaying ? styles.playing : ''} ${currentPage === 1 ? styles.hiddenOnCover : ''}`}
         onClick={(e) => {
           e.stopPropagation();
           toggleMusic();

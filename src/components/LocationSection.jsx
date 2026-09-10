@@ -15,7 +15,7 @@ const LocationSection = ({ onNext }) => {
           {/* Chapter Badge */}
           <div className="chapter-badge">
             <span className="dot" />
-            <span>VENUE • स्थान</span>
+            <span>VENUE</span>
             <span className="dot" />
           </div>
 
