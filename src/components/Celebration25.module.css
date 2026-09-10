@@ -52,9 +52,9 @@
 
 .monogramWrapper {
   position: relative;
-  width: clamp(160px, 32vw, 240px);
-  height: clamp(160px, 32vw, 240px);
-  margin: 0 auto 0.5rem;
+  width: clamp(140px, 28vw, 210px);
+  height: clamp(140px, 28vw, 210px);
+  margin: 0 auto 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +84,7 @@
 
 .innerDottedCircle {
   position: absolute;
-  inset: 12px;
+  inset: 10px;
   border-radius: 50%;
   border: 1px dashed rgba(184, 134, 36, 0.4);
   pointer-events: none;
@@ -103,10 +103,10 @@
 .left { left: -4.5px; top: calc(50% - 4.5px); }
 .right { right: -4.5px; top: calc(50% - 4.5px); }
 
-/* Dimensional Gold 25 Numerals — reduced by ~33% total for breathing room */
+/* Dimensional Gold 25 Numerals — scaled with the circle for perfect centering and breathing room */
 .heroNumber {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 9.5vw, 5.9rem);
+  font-size: clamp(3.05rem, 8.3vw, 5.15rem);
   font-weight: 700;
   line-height: 0.9;
   background: linear-gradient(180deg, #9E7422 0%, #F5E5B8 35%, #D4A843 65%, #6E4911 100%);
@@ -152,10 +152,10 @@
   font-weight: 600;
   line-height: 1.55;
   /* vw fallback for browsers without container-query support */
-  font-size: clamp(0.55rem, 2.85vw, 1.35rem);
-  /* Container-relative sizing: 3.2% of card content width.
-     Guarantees every character of the 67-char longest line fits (~86% fill). */
-  font-size: clamp(0.55rem, 3.2cqi, 1.4rem);
+  font-size: clamp(0.72rem, 3.4vw, 1.45rem);
+  /* Container-relative sizing: 3.85% of card content width.
+     Comfortably readable on mobile while guaranteeing all 3 lines fit cleanly without clipping. */
+  font-size: clamp(0.72rem, 3.85cqi, 1.45rem);
 }
 
 .flourishCluster {

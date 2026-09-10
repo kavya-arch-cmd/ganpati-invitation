@@ -68,7 +68,6 @@ const OpeningScreen = ({ onOpenInvitation }) => {
             >
               <span className={styles.buttonShimmer} />
               <span className={styles.buttonText}>OPEN INVITATION</span>
-              <span className={styles.buttonIcon}>🪔</span>
             </button>
 
             {/* Tap prompt */}
