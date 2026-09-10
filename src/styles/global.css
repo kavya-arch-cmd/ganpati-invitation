@@ -1,0 +1,476 @@
+/* ============================================================
+   GANPATI INVITATION — GLOBAL STYLES & DESIGN SYSTEM
+   Phase 2: Luxury Light Cream & Antique Gold Edition
+   ============================================================ */
+
+:root {
+  /* Core Light Parchment & Cream Palette */
+  --color-bg-primary: #F7F0DF;
+  --color-bg-secondary: #EFE3C8;
+  --color-bg-parchment: #FBF6E9;
+  --color-bg-cream: #F4EBD7;
+  --color-bg-card: rgba(254, 250, 240, 0.92);
+  --color-bg-card-solid: #FCF8EE;
+  --color-bg-card-hover: #FFFDF9;
+
+  /* Antique Gold & Metallics */
+  --color-gold: #B88624;
+  --color-gold-bright: #D4A843;
+  --color-gold-dark: #7A5514;
+  --color-gold-light: #E5C36E;
+  --color-gold-shimmer: #F5E5B8;
+  --color-gold-muted: rgba(184, 134, 36, 0.18);
+  --color-gold-glow: rgba(212, 168, 67, 0.35);
+
+  /* Rich Warm Brown & Earthy Accents */
+  --color-text-primary: #2E1E0F;
+  --color-text-secondary: #4A2E10;
+  --color-text-muted: #5E3D18;
+  --color-text-subtle: #7A5228;
+
+  /* Devotional Accent Tones */
+  --color-maroon: #6B1D2F;
+  --color-maroon-muted: rgba(107, 29, 47, 0.12);
+  --color-festive-red: #B3202C;
+  --color-festive-red-dark: #8A131D;
+  --color-festive-red-bright: #C72535;
+  --color-festive-red-glow: rgba(179, 32, 44, 0.25);
+  --color-saffron: #C85A17;
+  --color-saffron-muted: rgba(200, 90, 23, 0.14);
+  --color-diya-glow: rgba(230, 138, 34, 0.45);
+
+  /* Typography */
+  --font-display: 'Cinzel', 'Playfair Display', serif;
+  --font-editorial: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-devanagari: 'Noto Serif Devanagari', serif;
+
+  /* Borders & Shadows */
+  --border-gold-thin: 1px solid rgba(184, 134, 36, 0.35);
+  --border-gold-medium: 1.5px solid rgba(184, 134, 36, 0.55);
+  --border-gold-double: 3px double rgba(184, 134, 36, 0.65);
+  --shadow-card: 0 10px 30px -5px rgba(90, 58, 24, 0.08), 0 0 1px rgba(184, 134, 36, 0.2);
+  --shadow-card-hover: 0 16px 36px -4px rgba(90, 58, 24, 0.14), 0 0 15px rgba(184, 134, 36, 0.25);
+  --shadow-gold-glow: 0 0 25px rgba(212, 168, 67, 0.3);
+
+  /* Layout & Spacing */
+  --section-padding-y: clamp(4.5rem, 8vw, 7.5rem);
+  --section-padding-x: clamp(1.25rem, 4vw, 2.5rem);
+  --content-max-width: 960px;
+  --card-max-width: 720px;
+
+  /* Transitions */
+  --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-slow: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-size: 16px;
+  background-color: var(--color-bg-primary);
+}
+
+body {
+  font-family: var(--font-editorial);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Subtle Handcrafted Parchment Background Texture */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 250, 238, 0.75) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(239, 227, 200, 0.5) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(244, 235, 215, 0.6) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: all var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-gold-dark);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* ---- Page-by-Page Invitation Book Container ---- */
+.invitation-app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem) clamp(5.5rem, 10vw, 6.5rem);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+  animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ---- Page Enter Animation ---- */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---- In-Page Next Button (Pages 2–6) ---- */
+.page-next-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  background: linear-gradient(135deg, #B88624 0%, #D4A843 50%, #9E7422 100%);
+  color: #FFFFFF;
+  border: 1.5px solid #8C651C;
+  border-radius: 4px;
+  padding: clamp(0.75rem, 2vw, 0.95rem) clamp(2rem, 5vw, 3.2rem);
+  font-family: var(--font-display);
+  font-size: clamp(0.76rem, 2vw, 0.88rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px -2px rgba(184, 134, 36, 0.38), 0 0 0 3px rgba(212, 168, 67, 0.12);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-next-btn:hover {
+  background: linear-gradient(135deg, #C99632 0%, #E5C36E 50%, #B88624 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -2px rgba(184, 134, 36, 0.52);
+}
+
+.page-next-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.page-next-btn .page-next-arrow {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.page-next-btn:hover .page-next-arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-next-btn {
+    transition: none;
+  }
+  .page-next-btn:hover {
+    transform: none;
+  }
+  .page-next-btn .page-next-arrow {
+    transition: none;
+  }
+}
+
+.section-container {
+  max-width: var(--content-max-width);
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- Decorative Invitation Card Frame ---- */
+.invitation-card {
+  background: var(--color-bg-card);
+  border: var(--border-gold-thin);
+  border-radius: 4px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+  text-align: center;
+  transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+}
+
+/* Corner Filigree Borders on Cards */
+.invitation-card::before,
+.invitation-card::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--color-gold);
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.invitation-card::before {
+  top: 6px;
+  left: 6px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.invitation-card::after {
+  bottom: 6px;
+  right: 6px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ---- Scroll Reveal Animations ---- */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92) translateY(20px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Stagger Delays */
+.delay-1 { transition-delay: 0.12s; }
+.delay-2 { transition-delay: 0.24s; }
+.delay-3 { transition-delay: 0.36s; }
+.delay-4 { transition-delay: 0.48s; }
+
+/* ---- Gold Typography Helpers ---- */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #8C651C 0%, #D4A843 45%, #B88624 75%, #7A5314 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(90deg, #9E7422 0%, #E5C36E 35%, #FFF2CC 50%, #E5C36E 65%, #9E7422 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ---- Storytelling Chapter Badge ---- */
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  background: rgba(184, 134, 36, 0.10);
+  border: 1px solid rgba(184, 134, 36, 0.35);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  color: #6B4A12;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.chapter-badge .dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+}
+
+/* ---- Ornamental Dividers ---- */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.75rem auto;
+  width: 100%;
+  max-width: 260px;
+}
+
+.ornament-divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.ornament-divider .diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-gold);
+  transform: rotate(45deg);
+  opacity: 0.85;
+}
+
+.ornament-divider .dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+  opacity: 0.65;
+}
+
+/* ---- Temple Bell Hanging Styles ---- */
+.hanging-bell-wrapper {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hanging-bell-wrapper.left {
+  left: clamp(1rem, 5vw, 3rem);
+}
+
+.hanging-bell-wrapper.right {
+  right: clamp(1rem, 5vw, 3rem);
+}
+
+.hanging-bell {
+  transform-origin: top center;
+  animation: gentleSway 5s ease-in-out infinite;
+}
+
+.hanging-bell-wrapper.right .hanging-bell {
+  animation-delay: -2.5s;
+}
+
+@keyframes gentleSway {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+
+/* ---- Diya Warm Light Glow ---- */
+@keyframes flameFlicker {
+  0%, 100% { transform: scale(1) translateY(0); opacity: 0.95; filter: drop-shadow(0 0 6px rgba(240, 140, 20, 0.8)); }
+  25% { transform: scale(1.08, 0.95) translateY(-1px); opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 170, 40, 0.95)); }
+  50% { transform: scale(0.96, 1.04) translateY(1px); opacity: 0.9; filter: drop-shadow(0 0 5px rgba(230, 120, 10, 0.75)); }
+  75% { transform: scale(1.04, 0.98) translateY(-0.5px); opacity: 0.98; filter: drop-shadow(0 0 8px rgba(250, 150, 30, 0.9)); }
+}
+
+.flame-animated {
+  transform-origin: center bottom;
+  animation: flameFlicker 2.5s ease-in-out infinite;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 134, 36, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: rgba(184, 134, 36, 0.22);
+  color: var(--color-text-primary);
+}
+
+/* ---- Accessibility / Reduced Motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-item,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hanging-bell,
+  .flame-animated,
+  .gold-shimmer-text {
+    animation: none !important;
+  }
+}

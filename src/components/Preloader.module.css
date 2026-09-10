@@ -1,0 +1,121 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-bg-primary);
+  background: radial-gradient(circle at center, #FDF9F0 0%, #F5EBD7 60%, #EFE3C8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.7s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 2rem;
+}
+
+.sacredHalo {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(212, 168, 67, 0.35) 0%, rgba(200, 90, 23, 0.12) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.mandalaWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+}
+
+.mandalaSvg {
+  width: 100%;
+  height: 100%;
+  animation: rotateSlow 20s linear infinite;
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.omSymbol {
+  position: absolute;
+  font-family: var(--font-devanagari);
+  font-size: 2.5rem;
+  color: var(--color-gold-dark);
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(212, 168, 67, 0.5);
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+
+.sanskritMantra {
+  font-family: var(--font-devanagari);
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #8C651C 0%, #D4A843 50%, #8C651C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.loadingBar {
+  width: 160px;
+  height: 2px;
+  background-color: rgba(184, 134, 36, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.loadingFill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #8C651C, #E5C36E, #8C651C);
+  animation: loadProgress 1.4s ease-in-out infinite;
+}
+
+@keyframes loadProgress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.loadingText {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}

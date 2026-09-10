@@ -1,0 +1,85 @@
+.petalsContainer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -30px;
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.65;
+  filter: drop-shadow(0 2px 4px rgba(90, 58, 24, 0.12));
+}
+
+.marigold {
+  background: linear-gradient(135deg, #FFB300 0%, #FF8F00 50%, #E65100 100%);
+  width: 14px;
+  height: 14px;
+}
+
+.rose {
+  background: linear-gradient(135deg, #E57373 0%, #D32F2F 50%, #880E4F 100%);
+  width: 12px;
+  height: 12px;
+  border-radius: 60% 0 60% 60%;
+}
+
+.sparkle {
+  position: absolute;
+  top: -20px;
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-gold-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--color-gold-bright);
+  opacity: 0.7;
+}
+
+/* Keyframes for Falling Floating Motion */
+@keyframes floatDown1 {
+  0% { transform: translate3d(0, -20px, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translate3d(80px, 105vh, 0) rotate(360deg); opacity: 0; }
+}
+
+@keyframes floatDown2 {
+  0% { transform: translate3d(0, -20px, 0) rotate(45deg); opacity: 0; }
+  10% { opacity: 0.65; }
+  90% { opacity: 0.65; }
+  100% { transform: translate3d(-60px, 105vh, 0) rotate(-280deg); opacity: 0; }
+}
+
+@keyframes floatDown3 {
+  0% { transform: translate3d(0, -20px, 0) rotate(90deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translate3d(40px, 105vh, 0) rotate(480deg); opacity: 0; }
+}
+
+/* Individual Timings & Starting Offsets */
+.p1 { left: 8%; animation: floatDown1 14s linear infinite 0.5s; width: 15px; height: 15px; }
+.p2 { left: 24%; animation: floatDown2 16s linear infinite 3s; width: 12px; height: 12px; }
+.p3 { left: 45%; animation: floatDown3 18s linear infinite 6s; width: 14px; height: 14px; }
+.p4 { left: 68%; animation: floatDown1 15s linear infinite 2s; width: 11px; height: 11px; }
+.p5 { left: 85%; animation: floatDown2 17s linear infinite 4.5s; width: 13px; height: 13px; }
+.p6 { left: 94%; animation: floatDown3 19s linear infinite 8s; width: 14px; height: 14px; }
+
+.p7 { left: 16%; animation: floatDown2 18s linear infinite 1.5s; }
+.p8 { left: 38%; animation: floatDown1 15s linear infinite 5s; }
+.p9 { left: 58%; animation: floatDown3 16s linear infinite 7.5s; }
+.p10 { left: 78%; animation: floatDown2 19s linear infinite 10s; }
+
+.s1 { left: 20%; animation: floatDown1 12s linear infinite 1s; }
+.s2 { left: 50%; animation: floatDown3 14s linear infinite 4s; }
+.s3 { left: 72%; animation: floatDown2 13s linear infinite 2.5s; }
+.s4 { left: 90%; animation: floatDown1 11s linear infinite 6.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .petalsContainer {
+    display: none;
+  }
+}

@@ -1,0 +1,154 @@
+.navBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 4vw, 2.5rem);
+  background: linear-gradient(180deg, transparent 0%, rgba(247, 240, 223, 0.92) 40%, rgba(247, 240, 223, 0.98) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.navContainer {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+  gap: 1rem;
+}
+
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(254, 250, 240, 0.97);
+  border: 1.2px solid rgba(184, 134, 36, 0.55);
+  border-radius: 20px;
+  padding: 0.45rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #6B4A12;
+  box-shadow: 0 4px 14px rgba(90, 58, 24, 0.10);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.navBtn:hover:not(:disabled) {
+  background: #FFFDF8;
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(184, 134, 36, 0.22);
+}
+
+.navBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.nextBtn {
+  background: linear-gradient(135deg, #B88624 0%, #D4A843 50%, #9E7422 100%);
+  color: #FFFFFF;
+  border-color: #8C651C;
+  box-shadow: 0 4px 16px rgba(184, 134, 36, 0.35);
+}
+
+.nextBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #C99632 0%, #E5C36E 50%, #B88624 100%);
+  box-shadow: 0 6px 22px rgba(184, 134, 36, 0.45);
+}
+
+.shareBtn {
+  background: linear-gradient(135deg, #8A131D 0%, #C72535 50%, #9E1B28 100%);
+  color: #FFFFFF;
+  border-color: #5E0B13;
+  box-shadow: 0 4px 16px rgba(138, 19, 29, 0.35);
+}
+
+.shareBtn:hover {
+  background: linear-gradient(135deg, #A81B27 0%, #D93B4A 50%, #8A131D 100%);
+  box-shadow: 0 6px 22px rgba(138, 19, 29, 0.45);
+}
+
+.arrowIcon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.shareIcon {
+  font-size: 0.85rem;
+}
+
+.btnText {
+  white-space: nowrap;
+}
+
+/* Page Indicator */
+.indicatorWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pageDots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(184, 134, 36, 0.40);
+  border: 1px solid rgba(140, 101, 28, 0.55);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  width: 14px;
+  border-radius: 4px;
+  background: var(--color-gold);
+  border-color: var(--color-gold-dark);
+  box-shadow: 0 0 6px rgba(212, 168, 67, 0.5);
+}
+
+.pageNumber {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: #5E3D18;
+  font-weight: 700;
+}
+
+.slash {
+  opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+  .navBtn {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.66rem;
+  }
+}
+
+.navSpacer {
+  /* Mirror the min-width of a navBtn so the dots stay centred */
+  min-width: 72px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navBtn:hover {
+    transform: none;
+  }
+}

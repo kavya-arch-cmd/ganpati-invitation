@@ -1,0 +1,128 @@
+.closingSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card {
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(254, 250, 240, 0.94);
+  border: 1.5px solid rgba(184, 134, 36, 0.45);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card), 0 0 40px rgba(212, 168, 67, 0.12);
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3.5rem);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.mainMessage {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: clamp(1.25rem, 3.2vw, 1.65rem);
+  color: #4A2E10;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.chantWrapper {
+  margin: 1.5rem 0 2rem;
+}
+
+.chant {
+  font-family: var(--font-devanagari);
+  font-size: clamp(1.65rem, 4.8vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.chantText {
+  color: #B3202C;
+  text-shadow: 0 1px 2px rgba(255, 235, 200, 0.4);
+}
+
+.namasteEmoji {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.signatureContainer {
+  margin-bottom: 2.25rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+  color: #2E1E0F;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.regards {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  color: #5E3D18;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.diyaWrapper {
+  margin: 1.5rem auto 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.shareActionWrapper {
+  margin: 1.5rem 0 1rem;
+}
+
+.shareInvitationBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #8A131D 0%, #C72535 50%, #9E1B28 100%);
+  color: #FFFFFF;
+  border: 1.5px solid #5E0B13;
+  border-radius: 4px;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(138, 19, 29, 0.35);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.shareInvitationBtn:hover {
+  background: linear-gradient(135deg, #A81B27 0%, #D93B4A 50%, #8A131D 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(138, 19, 29, 0.5);
+}
+
+.shareBtnIcon {
+  font-size: 0.95rem;
+}
+
+.bottomBlessing {
+  font-family: var(--font-devanagari);
+  font-size: 0.9rem;
+  color: #6B4A12;
+  letter-spacing: 0.15em;
+  opacity: 0.9;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}

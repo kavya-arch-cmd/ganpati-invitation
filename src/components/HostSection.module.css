@@ -1,0 +1,81 @@
+.section {
+  padding: var(--section-padding-y) var(--section-padding-x);
+  background-color: var(--color-bg-primary);
+  background: radial-gradient(circle at 50% 50%, #FFFDF8 0%, #F5EBD7 60%, #EFE3C8 100%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  max-width: 620px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(254, 250, 240, 0.94);
+  border: 1.5px solid rgba(184, 134, 36, 0.45);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 4vw, 3rem);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pranamWrapper {
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 2px 6px rgba(184, 134, 36, 0.2));
+}
+
+.label {
+  font-family: var(--font-display);
+  letter-spacing: 0.3em;
+  font-size: 0.8rem;
+  color: var(--color-gold-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.mainName {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  color: var(--color-gold-dark);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #8C651C 0%, #D4A843 50%, #8C651C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.familyBlock {
+  margin: 0.75rem 0 1rem;
+}
+
+.ampersand {
+  font-family: var(--font-editorial);
+  font-size: 1.4rem;
+  color: var(--color-gold);
+  font-style: italic;
+  margin-bottom: 0.15rem;
+}
+
+.familyText {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.regardsText {
+  font-family: var(--font-editorial);
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}

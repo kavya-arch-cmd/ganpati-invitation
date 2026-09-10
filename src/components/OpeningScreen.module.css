@@ -1,0 +1,253 @@
+.openingScreen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--color-bg-primary);
+  background: radial-gradient(circle at 50% 30%, #FFFDF8 0%, #F8F1E1 55%, #EFE3C8 100%);
+  padding: clamp(1rem, 4vw, 2.5rem);
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Cinematic Radiance Bloom on Open Click */
+.radianceBloom {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 235, 175, 0.95) 0%, rgba(212, 168, 67, 0.7) 40%, rgba(247, 240, 223, 0.9) 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.bloomActive {
+  opacity: 1;
+}
+
+.outerFrame {
+  width: 100%;
+  max-width: 660px;
+  background: rgba(254, 251, 244, 0.9);
+  border: 1.5px solid rgba(184, 134, 36, 0.45);
+  border-radius: 6px;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  box-shadow: var(--shadow-card), 0 0 35px rgba(212, 168, 67, 0.12);
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.innerFrame {
+  border: 1px solid rgba(184, 134, 36, 0.3);
+  border-radius: 4px;
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 3rem);
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 80%);
+}
+
+/* Ornate Corner Flourishes */
+.cornerFlourish {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-gold);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.topAuspicious {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.flourishWing {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.sanskritText {
+  font-family: var(--font-devanagari);
+  font-size: clamp(1.25rem, 4vw, 1.85rem);
+  color: #5E3A0E;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.milestoneBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.badgeLine {
+  width: 25px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.5;
+}
+
+.badgeText {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #6B4A12;
+  font-weight: 700;
+}
+
+.mainTitle {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  margin: 0.25rem 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 2vw, 0.92rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #4A2E10;
+  margin-bottom: 1.75rem;
+  font-weight: 600;
+}
+
+.diyaWrapper {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* Premium Open Invitation CTA */
+.openButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #B88624 0%, #D4A843 50%, #9E7422 100%);
+  color: #FFFFFF;
+  border: 1.5px solid #8C651C;
+  border-radius: 4px;
+  padding: clamp(0.9rem, 2.5vw, 1.15rem) clamp(2.2rem, 5vw, 3.4rem);
+  font-family: var(--font-display);
+  font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px -2px rgba(184, 134, 36, 0.4), 0 0 0 3px rgba(212, 168, 67, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: pulseButton 3.5s ease-in-out infinite;
+}
+
+@keyframes pulseButton {
+  0%, 100% {
+    box-shadow: 0 6px 20px -2px rgba(184, 134, 36, 0.4), 0 0 0 3px rgba(212, 168, 67, 0.15);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 10px 28px -2px rgba(184, 134, 36, 0.55), 0 0 0 6px rgba(212, 168, 67, 0.25);
+    transform: translateY(-2px);
+  }
+}
+
+.openButton:hover {
+  background: linear-gradient(135deg, #C99632 0%, #E5C36E 50%, #B88624 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(184, 134, 36, 0.55);
+}
+
+.openButton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.buttonShimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerMove 3.5s infinite;
+}
+
+@keyframes shimmerMove {
+  0% { left: -100%; }
+  40%, 100% { left: 200%; }
+}
+
+.buttonText {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(60, 40, 15, 0.4);
+}
+
+.buttonIcon {
+  font-size: 1.1rem;
+  filter: drop-shadow(0 0 4px rgba(255, 235, 150, 0.8));
+}
+
+.scrollIndicator {
+  margin-top: 2rem;
+  cursor: pointer;
+  color: #6B4A12;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  animation: bounceDown 2s infinite;
+}
+
+.scrollIndicator:hover {
+  opacity: 1;
+  color: #4A2E10;
+}
+
+.scrollArrow {
+  font-size: 1.2rem;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .openButton {
+    animation: none;
+  }
+  .buttonShimmer {
+    display: none;
+  }
+  .scrollIndicator {
+    animation: none;
+  }
+}

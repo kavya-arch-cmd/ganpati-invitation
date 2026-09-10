@@ -1,0 +1,155 @@
+.curtainOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Center Radiant Glow behind opening curtains */
+.radianceCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 235, 170, 0.95) 0%, rgba(212, 168, 67, 0.6) 45%, transparent 75%);
+  z-index: 1;
+  animation: glowBloom 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes glowBloom {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  40% { transform: translate(-50%, -50%) scale(1.6); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+}
+
+/* Curtain Panels */
+.curtainPanel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  height: 100%;
+  z-index: 2;
+  will-change: transform;
+}
+
+.curtainLeft {
+  left: 0;
+  animation: curtainSlideLeft 2.2s cubic-bezier(0.7, 0, 0.3, 1) 0.3s forwards;
+}
+
+.curtainRight {
+  right: 0;
+  animation: curtainSlideRight 2.2s cubic-bezier(0.7, 0, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes curtainSlideLeft {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  100% {
+    transform: translateX(-102%) scaleX(0.95);
+  }
+}
+
+@keyframes curtainSlideRight {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  100% {
+    transform: translateX(102%) scaleX(0.95);
+  }
+}
+
+/* Fabric Gradient & Shading */
+.curtainFabric {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #5E0B13 0%,
+    #8A141F 15%,
+    #B3202C 30%,
+    #78101A 45%,
+    #A31C27 60%,
+    #6E0E17 75%,
+    #941923 90%,
+    #5E0B13 100%
+  );
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.45);
+  position: relative;
+}
+
+/* Gold Embroidered Border on Edge */
+.curtainBorderRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(180deg, #D4A843 0%, #8C651C 25%, #F5E5B8 50%, #8C651C 75%, #D4A843 100%);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4), 0 0 10px rgba(212, 168, 67, 0.5);
+  border-left: 1.5px solid #FFE8A3;
+}
+
+.curtainBorderLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(180deg, #D4A843 0%, #8C651C 25%, #F5E5B8 50%, #8C651C 75%, #D4A843 100%);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.4), 0 0 10px rgba(212, 168, 67, 0.5);
+  border-right: 1.5px solid #FFE8A3;
+}
+
+/* Vertical Shadow Folds */
+.fabricFold1, .fabricFold2, .fabricFold3 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8%;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.28), transparent);
+  pointer-events: none;
+}
+
+.fabricFold1 { left: 20%; }
+.fabricFold2 { left: 50%; }
+.fabricFold3 { left: 80%; }
+
+/* Top Valance */
+.curtainValance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: linear-gradient(180deg, #5E0B13 0%, #8A141F 80%, #D4A843 100%);
+  border-bottom: 2px solid #8C651C;
+  z-index: 3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  animation: valanceFade 2.4s ease forwards;
+}
+
+@keyframes valanceFade {
+  0%, 75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtainLeft {
+    animation: curtainSlideLeft 0.3s ease forwards !important;
+  }
+  .curtainRight {
+    animation: curtainSlideRight 0.3s ease forwards !important;
+  }
+  .radianceCenter {
+    animation: none !important;
+    display: none;
+  }
+}

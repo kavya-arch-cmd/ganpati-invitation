@@ -1,0 +1,157 @@
+.heroSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.heroCard {
+  background: rgba(254, 250, 240, 0.94);
+  border: 1.5px solid rgba(184, 134, 36, 0.45);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card), 0 0 45px rgba(212, 168, 67, 0.16);
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.archFrame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0.5rem 0.5rem;
+}
+
+.topToran {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 0.5rem;
+  opacity: 0.75;
+}
+
+.toranSvg {
+  width: 100%;
+  height: auto;
+}
+
+/* Divine Golden Halo Rays behind Ganpati */
+.divineHalo {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(260px, 60vw, 380px);
+  height: clamp(260px, 60vw, 380px);
+  background: radial-gradient(circle, rgba(255, 230, 150, 0.55) 0%, rgba(212, 168, 67, 0.25) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: divineAura 4s ease-in-out infinite;
+}
+
+@keyframes divineAura {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+.imageContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  filter: drop-shadow(0 12px 24px rgba(90, 58, 24, 0.16));
+}
+
+.ganpatiImage {
+  width: 100%;
+  max-width: min(82vw, 420px);
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ganpatiImage:hover {
+  transform: scale(1.02);
+}
+
+/* Temple Pedestal */
+.pedestal {
+  width: 80%;
+  max-width: 340px;
+  margin: 0.5rem auto 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.stepTop {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #B88624, transparent);
+  margin-bottom: 2px;
+}
+
+.stepMid {
+  height: 6px;
+  background: linear-gradient(90deg, #EFE3C8, #D4A843, #EFE3C8);
+  border-radius: 1px;
+}
+
+.stepBottom {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #8C651C, transparent);
+  margin-top: 2px;
+}
+
+.pedestalDiya {
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+/* Sacred Chant */
+.chantWrapper {
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+.sanskritChant {
+  font-family: var(--font-devanagari);
+  font-size: clamp(1.65rem, 4.8vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0.25rem 0 0.5rem;
+  color: #B3202C;
+  text-shadow: 0 1px 2px rgba(255, 235, 200, 0.4);
+}
+
+.devotionalSubtitle {
+  font-family: var(--font-devanagari);
+  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  color: #4A2E10;
+  font-weight: 600;
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .ganpatiImage {
+    max-width: 440px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .divineHalo {
+    animation: none;
+  }
+  .ganpatiImage:hover {
+    transform: none;
+  }
+}

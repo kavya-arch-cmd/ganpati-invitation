@@ -1,0 +1,123 @@
+.section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card {
+  max-width: 620px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(254, 250, 240, 0.94);
+  border: 1.5px solid rgba(184, 134, 36, 0.45);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 3rem);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.flourishWing {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--color-gold-dark);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin: 0;
+  background: linear-gradient(135deg, #8C651C 0%, #D4A843 50%, #8C651C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.addressFrame {
+  background: #FCF8EE;
+  border: 1px dashed rgba(184, 134, 36, 0.45);
+  border-radius: 4px;
+  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+  margin: 1.5rem auto 2.5rem;
+  max-width: 480px;
+}
+
+.pinIconWrapper {
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(90, 58, 24, 0.1));
+}
+
+.addressLines {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.15rem, 2.8vw, 1.4rem);
+  line-height: 1.8;
+  color: #4A2E10;
+  font-weight: 500;
+}
+
+.line {
+  margin-bottom: 0.15rem;
+}
+
+.lineStrong {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 0.25rem;
+}
+
+.directionsButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #B88624 0%, #D4A843 50%, #9E7422 100%);
+  color: #FFFFFF;
+  border: 1.5px solid #8C651C;
+  border-radius: 4px;
+  padding: 0.9rem 2.6rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(184, 134, 36, 0.35);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.directionsButton:hover {
+  background: linear-gradient(135deg, #C99632 0%, #E5C36E 50%, #B88624 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(184, 134, 36, 0.5);
+}
+
+.buttonArrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.directionsButton:hover .buttonArrow {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .directionsButton:hover {
+    transform: none;
+  }
+}
