@@ -79,7 +79,7 @@ const MusicController = forwardRef(({ autoStart = false }, ref) => {
       {/* Hidden native audio element */}
       <audio
         ref={audioRef}
-        src="/music/ganesha-slokam.mp3"
+        src={`${import.meta.env.BASE_URL}music/ganesha-slokam.mp3`}
         preload="auto"
         onEnded={handleEnded}
         onError={handleError}
