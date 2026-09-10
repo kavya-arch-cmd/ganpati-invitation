@@ -1,30 +1,148 @@
 .section {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
+}
+
+.combinedCard {
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(254, 250, 240, 0.94);
+  border: 1.5px solid rgba(184, 134, 36, 0.45);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card), 0 0 35px rgba(212, 168, 67, 0.12);
+  padding: clamp(0.75rem, 2vh, 1.4rem) clamp(1rem, 3.5vw, 2.25rem);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-height: 100%;
+}
+
+/* TOP SECTION: Centred Date Box */
+.dateBox {
+  background: #FAF4E6;
+  border: 1.2px solid rgba(184, 134, 36, 0.4);
+  border-radius: 5px;
+  padding: clamp(0.45rem, 1.2vh, 0.75rem) clamp(1.2rem, 3vw, 2rem);
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 2px 10px rgba(90, 58, 24, 0.05);
+}
+
+.cardCornerTL {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 12px;
+  height: 12px;
+  border-top: 1.5px solid var(--color-gold);
+  border-left: 1.5px solid var(--color-gold);
+  opacity: 0.65;
+}
+
+.cardCornerBR {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 12px;
+  height: 12px;
+  border-bottom: 1.5px solid var(--color-gold);
+  border-right: 1.5px solid var(--color-gold);
+  opacity: 0.65;
+}
+
+.dateLabel {
+  font-family: var(--font-display);
+  letter-spacing: 0.24em;
+  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+  color: #6B4A12;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.dateContent {
+  font-family: var(--font-editorial);
+}
+
+.dateText {
+  font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+  font-weight: 700;
+  color: #B3202C;
+  line-height: 1.25;
+}
+
+.smallMuted {
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  font-style: italic;
+  color: #5E3D18;
+  margin: 0.05rem 0;
+  display: block;
+}
+
+/* Subtle connecting divider */
+.sectionDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: clamp(0.35rem, 1vh, 0.65rem) auto;
+  width: 100%;
+  max-width: 200px;
+}
+
+.divLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.divDiamond {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-gold);
+  transform: rotate(45deg);
+  opacity: 0.85;
+}
+
+/* VENUE SECTION */
+.venueSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .headingWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  gap: 0.6rem;
+  margin-bottom: 0.25rem;
 }
 
 .flourishWing {
   color: var(--color-gold);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   opacity: 0.8;
 }
 
 .heading {
   font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
   color: var(--color-gold-dark);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  text-align: center;
   font-weight: 700;
   letter-spacing: 0.15em;
   margin: 0;
@@ -34,134 +152,108 @@
   color: transparent;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.75rem;
-  max-width: 960px;
-  margin: 2.5rem auto 0;
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Single centred card layout (DATE only) */
-.gridSingle {
-  display: flex;
-  justify-content: center;
-  margin: 2rem auto 0;
-  max-width: 360px;
+/* Address Frame */
+.addressFrame {
+  background: #FCF8EE;
+  border: 1px dashed rgba(184, 134, 36, 0.45);
+  border-radius: 4px;
+  padding: clamp(0.45rem, 1.2vh, 0.75rem) clamp(0.85rem, 2.5vw, 1.5rem);
+  margin: 0.2rem auto 0.45rem;
   width: 100%;
-}
-
-.card {
-  background: rgba(254, 250, 240, 0.94);
-  border: 1.5px solid rgba(184, 134, 36, 0.45);
-  border-radius: 6px;
-  padding: 2.5rem 1.75rem;
-  text-align: center;
-  box-shadow: var(--shadow-card);
-  transition: all var(--transition-smooth);
+  max-width: 440px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  gap: clamp(0.6rem, 2vw, 1rem);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--color-gold);
-  background: #FFFDF8;
-}
-
-.cardCornerTL {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  width: 14px;
-  height: 14px;
-  border-top: 1.5px solid var(--color-gold);
-  border-left: 1.5px solid var(--color-gold);
-  opacity: 0.6;
-}
-
-.cardCornerBR {
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
-  width: 14px;
-  height: 14px;
-  border-bottom: 1.5px solid var(--color-gold);
-  border-right: 1.5px solid var(--color-gold);
-  opacity: 0.6;
-}
-
-.iconWrapper {
-  margin-bottom: 1.25rem;
+.pinIconWrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   filter: drop-shadow(0 2px 4px rgba(90, 58, 24, 0.1));
 }
 
-.label {
-  font-family: var(--font-display);
-  letter-spacing: 0.22em;
-  font-size: 0.78rem;
-  color: #6B4A12;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.content {
+.addressLines {
   font-family: var(--font-editorial);
-  color: var(--color-text-primary);
-  line-height: 1.4;
+  font-size: clamp(0.95rem, 2.3vw, 1.15rem);
+  line-height: 1.35;
+  color: #4A2E10;
+  font-weight: 500;
+  text-align: left;
 }
 
-.dateText {
-  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-  font-weight: 600;
+.line {
+  margin-bottom: 0.08rem;
+}
+
+.lineStrong {
+  font-weight: 700;
   color: var(--color-text-primary);
 }
 
-.occasionText {
-  font-size: clamp(1.3rem, 2.8vw, 1.55rem);
-  font-weight: 600;
-  color: var(--color-gold-dark);
+/* Directions Button */
+.directionsButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #B88624 0%, #D4A843 50%, #9E7422 100%);
+  color: #FFFFFF;
+  border: 1.2px solid #8C651C;
+  border-radius: 4px;
+  padding: clamp(0.42rem, 1vh, 0.58rem) clamp(1.25rem, 3vw, 2.2rem);
   font-family: var(--font-display);
-}
-
-.locationText {
-  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
   font-weight: 600;
-  color: var(--color-text-primary);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(184, 134, 36, 0.28);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
 }
 
-.smallMuted {
-  font-size: 0.95rem;
-  font-style: italic;
-  color: #5E3D18;
-  margin: 0.35rem 0;
-  display: block;
+.directionsButton:hover {
+  background: linear-gradient(135deg, #C99632 0%, #E5C36E 50%, #B88624 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 134, 36, 0.45);
 }
 
-.subtext {
+.buttonArrow {
   font-size: 0.95rem;
-  font-style: italic;
-  color: #5E3D18;
-  margin-top: 0.35rem;
+  transition: transform 0.3s ease;
+}
+
+.directionsButton:hover .buttonArrow {
+  transform: translateX(3px);
+}
+
+.continueWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-height: 660px) {
+  .combinedCard {
+    padding: 0.5rem clamp(0.75rem, 2vw, 1.25rem);
+  }
+  .dateBox {
+    padding: 0.35rem 0.85rem;
+  }
+  .addressFrame {
+    padding: 0.35rem 0.85rem;
+    margin: 0.15rem auto 0.35rem;
+  }
+  .sectionDivider {
+    margin: 0.25rem auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card:hover {
+  .directionsButton:hover {
     transform: none;
   }
 }

@@ -1,28 +1,48 @@
 import React from 'react';
 import styles from './CurtainReveal.module.css';
 
-const CurtainReveal = ({ isOpening, onAnimationComplete }) => {
-  if (!isOpening) return null;
+const CurtainReveal = ({ isOpening, isClosing, isClosed, onAnimationComplete, onCloseComplete }) => {
+  if (!isOpening && !isClosing && !isClosed) return null;
+
+  let leftClass, rightClass;
+
+  if (isClosed) {
+    // Static closed position — no animation
+    leftClass = `${styles.curtainPanel} ${styles.curtainStaticLeft}`;
+    rightClass = `${styles.curtainPanel} ${styles.curtainStaticRight}`;
+  } else if (isClosing) {
+    leftClass = `${styles.curtainPanel} ${styles.curtainCloseLeft}`;
+    rightClass = `${styles.curtainPanel} ${styles.curtainCloseRight}`;
+  } else {
+    leftClass = `${styles.curtainPanel} ${styles.curtainLeft}`;
+    rightClass = `${styles.curtainPanel} ${styles.curtainRight}`;
+  }
 
   return (
     <div
       className={styles.curtainOverlay}
       onAnimationEnd={(e) => {
-        // When the curtain panel animation ends, trigger completion callback
+        // Opening: fire when left panel finishes sliding out
         if (e.animationName && e.animationName.includes('curtainSlideLeft')) {
           if (onAnimationComplete) onAnimationComplete();
+        }
+        // Closing: fire when left panel finishes sliding in
+        if (e.animationName && e.animationName.includes('curtainCloseLeft')) {
+          if (onCloseComplete) onCloseComplete();
         }
       }}
       aria-hidden="true"
     >
       {/* Divine Golden Light Radiance behind curtains */}
-      <div className={styles.radianceCenter}>
-        <div className={styles.haloRing}></div>
-        <div className={styles.lightRay}></div>
-      </div>
+      {isOpening && (
+        <div className={styles.radianceCenter}>
+          <div className={styles.haloRing}></div>
+          <div className={styles.lightRay}></div>
+        </div>
+      )}
 
       {/* Left Curtain Panel */}
-      <div className={`${styles.curtainPanel} ${styles.curtainLeft}`}>
+      <div className={leftClass}>
         <div className={styles.curtainFabric}>
           {/* Gold Embroidered Border on Curtain Edge */}
           <div className={styles.curtainBorderRight}>
@@ -37,7 +57,7 @@ const CurtainReveal = ({ isOpening, onAnimationComplete }) => {
       </div>
 
       {/* Right Curtain Panel */}
-      <div className={`${styles.curtainPanel} ${styles.curtainRight}`}>
+      <div className={rightClass}>
         <div className={styles.curtainFabric}>
           {/* Gold Embroidered Border on Curtain Edge */}
           <div className={styles.curtainBorderLeft}>
@@ -52,7 +72,7 @@ const CurtainReveal = ({ isOpening, onAnimationComplete }) => {
       </div>
 
       {/* Top Valance / Toran */}
-      <div className={styles.curtainValance}>
+      <div className={isClosed ? `${styles.curtainValance} ${styles.valanceStatic}` : (isClosing ? `${styles.curtainValance} ${styles.valanceClose}` : styles.curtainValance)}>
         <div className={styles.valanceFringe}></div>
       </div>
     </div>

@@ -54,12 +54,18 @@ const Celebration25 = ({ onNext }) => {
             <span className="line" />
           </div>
 
-          {/* New approved paragraph — exact wording required */}
-          <p className={styles.subtitle}>
-            With the divine blessings of Lord Ganesha and our beloved parents,<br />
-            Laxmiben Manoharlal Shah &amp; Monoharlal Vitthaldas Shah,<br />
-            we proudly celebrate 25 blessed years of Ganpati Bappa's presence.
-          </p>
+          {/* Dedication paragraph — exactly 3 lines on every device via container-query sizing */}
+          <div className={styles.dedicationText}>
+            <div className={styles.dedicationLine}>
+              With the divine blessings of Lord Ganesha and our beloved parents,
+            </div>
+            <div className={styles.dedicationLine}>
+              Laxmiben Manoharlal Shah &amp; Monoharlal Vitthaldas Shah,
+            </div>
+            <div className={styles.dedicationLine}>
+              we proudly celebrate 25 blessed years of Ganpati Bappa&apos;s presence.
+            </div>
+          </div>
 
           <div className={styles.flourishCluster}>
             <span className={styles.clusterDot} />

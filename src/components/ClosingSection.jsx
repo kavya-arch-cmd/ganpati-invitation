@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ClosingSection.module.css';
 import DiyaIcon from './DiyaIcon';
 
-const ClosingSection = ({ onShare }) => {
+const ClosingSection = ({ onShare, onRestart }) => {
   return (
     <div className={styles.closingSection}>
       <div className="section-container">
@@ -37,20 +37,32 @@ const ClosingSection = ({ onShare }) => {
             </h2>
           </div>
 
-          {/* Host Signoff */}
+          {/* Host Signoff with exact 3-line sequence */}
           <div className={styles.signatureContainer}>
             <p className={styles.regards}>Regards</p>
-            <p className={styles.name}>• Ravindra Shah • Shital Shah • Amit Shah</p>
-            <p className={styles.name}>• Poonam Shah • Manthan R. Shah</p>
+            <div className={styles.namesList}>
+              <span className={styles.nameLine}>• Ravindra Shah • Shital Shah</span>
+              <span className={styles.nameLine}>• Amit Shah • Poonam Shah</span>
+              <span className={styles.nameLine}>• Manthan R. Shah</span>
+            </div>
           </div>
 
           {/* Central Devotional Glowing Diya */}
           <div className={styles.diyaWrapper}>
-            <DiyaIcon size={64} />
+            <DiyaIcon size={56} />
           </div>
 
-          {/* Subtle Bottom Inscription */}
-          <p className={styles.bottomBlessing}>॥ शुभ गणेशोत्सव २०२६ ॥</p>
+          {/* COMPLETE INVITATION — triggers closing curtain */}
+          <button
+            className={styles.restartBtn}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onRestart) onRestart();
+            }}
+            aria-label="Complete the invitation"
+          >
+            <span>COMPLETE INVITATION</span>
+          </button>
         </div>
       </div>
     </div>

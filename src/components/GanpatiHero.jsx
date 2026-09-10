@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './GanpatiHero.module.css';
-import ganpatiImg from '../assets/bg removed ganapati image.png';
+import ganpatiWebp from '../assets/bg removed ganapati image.webp';
+import ganpatiPng from '../assets/bg removed ganapati image.png';
 import DiyaIcon from './DiyaIcon';
 
 const GanpatiHero = ({ onNext }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    // If the image is already cached/complete, reveal immediately
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setIsImageLoaded(true);
+    }
+  }, []);
+
   return (
     <div className={styles.heroSection}>
       <div className={styles.heroCard}>
@@ -17,14 +28,21 @@ const GanpatiHero = ({ onNext }) => {
           {/* Divine golden halo behind the murti */}
           <div className={styles.divineHalo} aria-hidden="true" />
 
-          {/* Ganpati murti — ceremonial slow reveal */}
-          <div className={styles.imageContainer}>
-            <img
-              src={ganpatiImg}
-              alt="Lord Ganesha – Ganpati Bappa"
-              className={styles.ganpatiImage}
-              loading="eager"
-            />
+          {/* Ganpati murti — ceremonial slow reveal only when image is ready */}
+          <div className={`${styles.imageContainer} ${isImageLoaded ? styles.isRevealed : ''}`}>
+            <picture className={styles.pictureWrapper}>
+              <source srcSet={ganpatiWebp} type="image/webp" />
+              <img
+                ref={imgRef}
+                src={ganpatiPng}
+                alt="Lord Ganesha – Ganpati Bappa"
+                className={styles.ganpatiImage}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                onLoad={() => setIsImageLoaded(true)}
+              />
+            </picture>
           </div>
 
           {/* Temple pedestal steps */}

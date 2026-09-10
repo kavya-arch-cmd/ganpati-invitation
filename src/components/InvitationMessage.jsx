@@ -21,7 +21,9 @@ const InvitationMessage = ({ onNext }) => {
 
           {/* Sacred Lotus / Om Icon Header */}
           <div className={styles.sacredHeader}>
-            <div className={styles.omCircle}>ॐ</div>
+            <div className={styles.omCircle}>
+              <span className={styles.omSymbol}>ॐ</span>
+            </div>
           </div>
 
           {/* Message Lines with Editorial Hierarchy */}

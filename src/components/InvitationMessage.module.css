@@ -11,7 +11,7 @@
   max-width: 680px;
   width: 100%;
   text-align: center;
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 3rem);
+  padding: clamp(1rem, 2.5vh, 2.25rem) clamp(1.25rem, 4vw, 2.5rem);
   background: rgba(254, 250, 240, 0.94);
   border: 1.5px solid rgba(184, 134, 36, 0.45);
   border-radius: 6px;
@@ -19,6 +19,12 @@
   margin: 0 auto;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  box-sizing: border-box;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .cornerOrnament {
@@ -35,7 +41,7 @@
 .bottomRight { bottom: 8px; right: 8px; border-left: none; border-top: none; }
 
 .sacredHeader {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.6rem;
   display: flex;
   justify-content: center;
 }
@@ -46,23 +52,30 @@
   border-radius: 50%;
   border: 1.5px solid var(--color-gold);
   background: radial-gradient(circle, #FFFDF8 0%, #F5EBD7 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px rgba(184, 134, 36, 0.15);
+  padding: 0;
+  margin: 0;
+}
+
+.omSymbol {
+  display: block;
   font-family: var(--font-devanagari);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   line-height: 1;
   color: #5E3A0E;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(184, 134, 36, 0.15);
-  /* Devanagari OM glyph sits slightly high — nudge down to true optical centre */
-  padding-top: 3px;
+  position: relative;
+  top: 4px;
+  margin: 0;
+  padding: 0;
 }
 
 .line1 {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+  font-size: clamp(1.18rem, 2.8vw, 1.5rem);
   color: #4A2E10;
   margin-bottom: 0.75rem;
   font-weight: 600;
@@ -95,7 +108,7 @@
 .line3, .line5 {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-size: clamp(1.15rem, 2.7vw, 1.45rem);
   color: #4A2E10;
   margin: 0.5rem 0;
   font-weight: 600;
@@ -103,7 +116,7 @@
 
 .line4 {
   font-family: var(--font-editorial);
-  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+  font-size: clamp(1.45rem, 3.8vw, 1.95rem);
   color: var(--color-text-primary);
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -116,8 +129,8 @@
   color: var(--color-gold-dark);
   letter-spacing: 0.08em;
   font-weight: 600;
-  margin-top: 0.35rem;
-  margin-bottom: 2rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(135deg, #7A5314 0%, #C99632 50%, #8C651C 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -125,13 +138,13 @@
 }
 
 .lotusLineArt {
-  margin-top: 1rem;
+  margin-top: 0.35rem;
   display: flex;
   justify-content: center;
 }
 
 .lotusSvg {
-  width: 90px;
+  width: 72px;
   height: auto;
   opacity: 0.85;
 }

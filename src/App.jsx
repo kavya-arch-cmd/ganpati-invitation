@@ -12,12 +12,14 @@ import GanpatiHero from './components/GanpatiHero';
 import Celebration25 from './components/Celebration25';
 import InvitationMessage from './components/InvitationMessage';
 import EventDetails from './components/EventDetails';
-import LocationSection from './components/LocationSection';
 import ClosingSection from './components/ClosingSection';
+import ganpatiWebp from './assets/bg removed ganapati image.webp';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isCurtainOpening, setIsCurtainOpening] = useState(false);
+  const [isCurtainClosing, setIsCurtainClosing] = useState(false);
+  const [isCurtainClosed, setIsCurtainClosed] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isToastVisible, setIsToastVisible] = useState(false);
 
@@ -25,15 +27,20 @@ function App() {
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
+  // Preload optimized Ganpati artwork on boot for instant Slide 3 display
+  useEffect(() => {
+    const preloadImg = new Image();
+    preloadImg.src = ganpatiWebp;
+  }, []);
+
   // Page 1: Cover
   // Page 2: Shlok
   // Page 3: Ganpati Hero
   // Page 4: Celebration 25
   // Page 5: Invitation Message
-  // Page 6: Event Details
-  // Page 7: Location
-  // Page 8: Closing
-  const totalPages = 8;
+  // Page 6: Date + Venue Combined
+  // Page 7: Closing
+  const totalPages = 7;
 
   // Show subtle toast notification
   const showToast = useCallback((msg) => {
@@ -68,6 +75,30 @@ function App() {
     setTimeout(() => {
       setIsCurtainOpening(false);
     }, 2500);
+  }, []);
+
+  // Handler for COMPLETE INVITATION on Slide 7 — triggers closing curtain animation
+  const handleRestart = useCallback(() => {
+    setIsCurtainClosing(true);
+  }, []);
+
+  // Called by CurtainReveal when closing animation finishes —
+  // transition to static closed state (do NOT reset to Slide 1 yet)
+  const handleCloseComplete = useCallback(() => {
+    // Pause music
+    if (musicRef.current && musicRef.current.isPlaying()) {
+      musicRef.current.togglePlay();
+    }
+    // Switch from animated closing → static closed state
+    setIsCurtainClosing(false);
+    setIsCurtainClosed(true);
+  }, []);
+
+  // Handler for VIEW AGAIN button on the closed curtain overlay —
+  // directly reset to Slide 1 with NO curtain animation
+  const handleViewAgain = useCallback(() => {
+    setIsCurtainClosed(false);
+    setCurrentPage(1);
   }, []);
 
   const handleNext = useCallback(() => {
@@ -199,8 +230,26 @@ function App() {
       {/* Floating Music Controller (starts at 00:25 on Open Invitation) */}
       <MusicController ref={musicRef} currentPage={currentPage} />
 
-      {/* Ceremonial Curtain Reveal on Open Invitation */}
-      <CurtainReveal isOpening={isCurtainOpening} />
+      {/* Ceremonial Curtain — opening (Shlok→Ganpati), closing (Slide 7), and static closed */}
+      <CurtainReveal
+        isOpening={isCurtainOpening}
+        isClosing={isCurtainClosing}
+        isClosed={isCurtainClosed}
+        onCloseComplete={handleCloseComplete}
+      />
+
+      {/* VIEW AGAIN overlay — shown on top of closed curtain */}
+      {isCurtainClosed && (
+        <div className="view-again-overlay">
+          <button
+            className="view-again-btn"
+            onClick={handleViewAgain}
+            aria-label="View the invitation again"
+          >
+            VIEW AGAIN
+          </button>
+        </div>
+      )}
 
       {/* Toast Notification for Clipboard */}
       <Toast message={toastMessage} isVisible={isToastVisible} />
@@ -218,8 +267,7 @@ function App() {
         {currentPage === 4 && <Celebration25 onNext={handleNext} />}
         {currentPage === 5 && <InvitationMessage onNext={handleNext} />}
         {currentPage === 6 && <EventDetails onNext={handleNext} />}
-        {currentPage === 7 && <LocationSection onNext={handleNext} />}
-        {currentPage === 8 && <ClosingSection onShare={handleShare} />}
+        {currentPage === 7 && <ClosingSection onShare={handleShare} onRestart={handleRestart} />}
       </main>
 
       {/* Elegant Bottom Navigation Controls */}

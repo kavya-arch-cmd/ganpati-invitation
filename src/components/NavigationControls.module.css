@@ -28,9 +28,9 @@
   background: rgba(254, 250, 240, 0.97);
   border: 1.2px solid rgba(184, 134, 36, 0.55);
   border-radius: 20px;
-  padding: 0.45rem 1.1rem;
+  padding: 0.45rem 1.15rem;
   font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   color: #6B4A12;
@@ -125,8 +125,8 @@
 
 .pageNumber {
   font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
   color: #5E3D18;
   font-weight: 700;
 }
@@ -137,8 +137,8 @@
 
 @media (max-width: 480px) {
   .navBtn {
-    padding: 0.4rem 0.85rem;
-    font-size: 0.66rem;
+    padding: 0.4rem 0.95rem;
+    font-size: 0.74rem;
   }
 }
 
