@@ -74,7 +74,7 @@
   margin: 0;
 }
 
-/* OM properly centered inside its gold circle */
+/* OM visually centered both horizontally and vertically inside gold circle */
 .omSymbol {
   display: flex;
   align-items: center;
@@ -86,7 +86,8 @@
   font-weight: 700;
   margin: 0;
   padding: 0;
-  transform: none;
+  /* Optical vertical offset: brings the visible glyph center down by 0.25em, perfectly equalizing empty space above and below ॐ inside the circle */
+  transform: translateY(0.25em);
 }
 
 .line1 {
