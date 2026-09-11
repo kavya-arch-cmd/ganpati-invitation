@@ -483,9 +483,9 @@ button {
 
 /* ---- Accessibility / Reduced Motion ---- */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *:not([class*="curtain"]):not([class*="Curtain"]):not([class*="valance"]):not([class*="radiance"]),
+  *:not([class*="curtain"]):not([class*="Curtain"]):not([class*="valance"]):not([class*="radiance"])::before,
+  *:not([class*="curtain"]):not([class*="Curtain"]):not([class*="valance"]):not([class*="radiance"])::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

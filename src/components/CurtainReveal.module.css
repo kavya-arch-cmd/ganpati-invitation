@@ -12,8 +12,12 @@
   pointer-events: none;
   overflow: hidden;
   display: flex;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+}
+
+.curtainHidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Center Radiant Glow behind opening curtains */
@@ -28,19 +32,19 @@
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 235, 170, 0.95) 0%, rgba(212, 168, 67, 0.6) 45%, transparent 75%);
   z-index: 1;
-  -webkit-animation: glowBloom 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  animation: glowBloom 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  -webkit-animation: glowBloom 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: glowBloom 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 @-webkit-keyframes glowBloom {
-  0% { -webkit-transform: translate(-50%, -50%) scale(0.2); transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
-  40% { -webkit-transform: translate(-50%, -50%) scale(1.6); transform: translate(-50%, -50%) scale(1.6); opacity: 1; }
+  0%, 12% { -webkit-transform: translate(-50%, -50%) scale(0.2); transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  45% { -webkit-transform: translate(-50%, -50%) scale(1.6); transform: translate(-50%, -50%) scale(1.6); opacity: 1; }
   100% { -webkit-transform: translate(-50%, -50%) scale(3); transform: translate(-50%, -50%) scale(3); opacity: 0; }
 }
 
 @keyframes glowBloom {
-  0% { -webkit-transform: translate(-50%, -50%) scale(0.2); transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
-  40% { -webkit-transform: translate(-50%, -50%) scale(1.6); transform: translate(-50%, -50%) scale(1.6); opacity: 1; }
+  0%, 12% { -webkit-transform: translate(-50%, -50%) scale(0.2); transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  45% { -webkit-transform: translate(-50%, -50%) scale(1.6); transform: translate(-50%, -50%) scale(1.6); opacity: 1; }
   100% { -webkit-transform: translate(-50%, -50%) scale(3); transform: translate(-50%, -50%) scale(3); opacity: 0; }
 }
 
@@ -55,24 +59,24 @@
   will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0) scaleX(1);
+  transform: translate3d(0, 0, 0) scaleX(1);
 }
 
 .curtainLeft {
   left: 0;
-  -webkit-animation: curtainSlideLeft 2.2s cubic-bezier(0.7, 0, 0.3, 1) 0.3s both;
-  animation: curtainSlideLeft 2.2s cubic-bezier(0.7, 0, 0.3, 1) 0.3s both;
+  -webkit-animation: curtainSlideLeft 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  animation: curtainSlideLeft 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
 .curtainRight {
   right: 0;
-  -webkit-animation: curtainSlideRight 2.2s cubic-bezier(0.7, 0, 0.3, 1) 0.3s both;
-  animation: curtainSlideRight 2.2s cubic-bezier(0.7, 0, 0.3, 1) 0.3s both;
+  -webkit-animation: curtainSlideRight 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  animation: curtainSlideRight 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
 @-webkit-keyframes curtainSlideLeft {
-  0% {
+  0%, 12% {
     -webkit-transform: translate3d(0, 0, 0) scaleX(1);
     transform: translate3d(0, 0, 0) scaleX(1);
   }
@@ -83,7 +87,7 @@
 }
 
 @keyframes curtainSlideLeft {
-  0% {
+  0%, 12% {
     -webkit-transform: translate3d(0, 0, 0) scaleX(1);
     transform: translate3d(0, 0, 0) scaleX(1);
   }
@@ -94,7 +98,7 @@
 }
 
 @-webkit-keyframes curtainSlideRight {
-  0% {
+  0%, 12% {
     -webkit-transform: translate3d(0, 0, 0) scaleX(1);
     transform: translate3d(0, 0, 0) scaleX(1);
   }
@@ -105,7 +109,7 @@
 }
 
 @keyframes curtainSlideRight {
-  0% {
+  0%, 12% {
     -webkit-transform: translate3d(0, 0, 0) scaleX(1);
     transform: translate3d(0, 0, 0) scaleX(1);
   }
@@ -182,8 +186,13 @@
   border-bottom: 2px solid #8C651C;
   z-index: 3;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-  -webkit-animation: valanceFade 2.4s ease forwards;
-  animation: valanceFade 2.4s ease forwards;
+  -webkit-animation: valanceFade 2.5s ease forwards;
+  animation: valanceFade 2.5s ease forwards;
+}
+
+.valanceHidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @-webkit-keyframes valanceFade {

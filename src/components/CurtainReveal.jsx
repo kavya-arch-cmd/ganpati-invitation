@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './CurtainReveal.module.css';
 
 const CurtainReveal = ({ isOpening, isClosing, isClosed, onAnimationComplete, onCloseComplete }) => {
-  if (!isOpening && !isClosing && !isClosed) return null;
+  const isInactive = !isOpening && !isClosing && !isClosed;
 
-  let leftClass, rightClass;
+  let leftClass = styles.curtainPanel;
+  let rightClass = styles.curtainPanel;
 
   if (isClosed) {
     // Static closed position — no animation
@@ -13,14 +14,23 @@ const CurtainReveal = ({ isOpening, isClosing, isClosed, onAnimationComplete, on
   } else if (isClosing) {
     leftClass = `${styles.curtainPanel} ${styles.curtainCloseLeft}`;
     rightClass = `${styles.curtainPanel} ${styles.curtainCloseRight}`;
-  } else {
+  } else if (isOpening) {
     leftClass = `${styles.curtainPanel} ${styles.curtainLeft}`;
     rightClass = `${styles.curtainPanel} ${styles.curtainRight}`;
   }
 
+  let valanceClass = styles.curtainValance;
+  if (isInactive) {
+    valanceClass = `${styles.curtainValance} ${styles.valanceHidden}`;
+  } else if (isClosed) {
+    valanceClass = `${styles.curtainValance} ${styles.valanceStatic}`;
+  } else if (isClosing) {
+    valanceClass = `${styles.curtainValance} ${styles.valanceClose}`;
+  }
+
   return (
     <div
-      className={styles.curtainOverlay}
+      className={`${styles.curtainOverlay} ${isInactive ? styles.curtainHidden : ''}`}
       onAnimationEnd={(e) => {
         // Opening: fire when left panel finishes sliding out
         if (e.animationName && e.animationName.includes('curtainSlideLeft')) {
@@ -31,7 +41,7 @@ const CurtainReveal = ({ isOpening, isClosing, isClosed, onAnimationComplete, on
           if (onCloseComplete) onCloseComplete();
         }
       }}
-      aria-hidden="true"
+      aria-hidden={isInactive ? 'true' : 'false'}
     >
       {/* Divine Golden Light Radiance behind curtains */}
       {isOpening && (
@@ -72,11 +82,11 @@ const CurtainReveal = ({ isOpening, isClosing, isClosed, onAnimationComplete, on
       </div>
 
       {/* Top Valance / Toran */}
-      <div className={isClosed ? `${styles.curtainValance} ${styles.valanceStatic}` : (isClosing ? `${styles.curtainValance} ${styles.valanceClose}` : styles.curtainValance)}>
+      <div className={valanceClass}>
         <div className={styles.valanceFringe}></div>
       </div>
     </div>
   );
 };
 
-export default CurtainReveal;
+export default memo(CurtainReveal);

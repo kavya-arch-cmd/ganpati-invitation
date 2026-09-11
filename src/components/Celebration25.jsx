@@ -1,13 +1,9 @@
 import React from 'react';
 import styles from './Celebration25.module.css';
-import TempleSketchWatermark from './TempleSketchWatermark';
 
 const Celebration25 = ({ onNext }) => {
   return (
     <div className={styles.section}>
-      {/* Background Temple Watermark */}
-      <TempleSketchWatermark opacity={0.14} />
-
       <div className="section-container">
         <div className={`${styles.card} reveal-scale is-revealed`}>
           {/* Chapter Badge — Marathi "२५ वर्षे" removed per correction 4 */}
