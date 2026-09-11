@@ -92,10 +92,9 @@
   }
 }
 
-/* Hide button on Slide 1 — audio element remains mounted and functional */
+/* Hide button on Slide 1 & 5 — audio element remains mounted and functional */
 .hiddenOnCover {
-  visibility: hidden;
-  pointer-events: none;
+  display: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -51,19 +51,20 @@ function App() {
     }, 2800);
   }, []);
 
-  // Handler for OPEN INVITATION CTA on Page 1 — goes directly to Shlok slide, NO curtain here
-  const handleOpenInvitation = () => {
+  // Handler for OPEN INVITATION CTA on Page 1 — goes directly to Shlok slide, NO curtain
+  const handleOpenInvitation = useCallback(() => {
     // Start background music at 00:25 as specified
     if (musicRef.current) {
       musicRef.current.startAt25s();
     }
 
-    // Advance immediately to Page 2 (Shlok slide) — no curtain on this transition
+    // Advance immediately to Page 2 (Shlok slide) — direct transition, no curtain
     setCurrentPage(2);
-  };
+  }, []);
 
-  // Handler for CONTINUE on Shlok Slide (Page 2) — curtain opens HERE, then shows Ganpati
+  // Handler for CONTINUE on Shlok Slide (Page 2) — curtain opens, reveals Ganpati (Page 3)
   const handleShlokContinue = useCallback(() => {
+    if (isCurtainOpening) return;
     setIsCurtainOpening(true);
 
     // Advance to Page 3 (Ganpati Reveal) mid-curtain
@@ -75,7 +76,7 @@ function App() {
     setTimeout(() => {
       setIsCurtainOpening(false);
     }, 2500);
-  }, []);
+  }, [isCurtainOpening]);
 
   // Handler for COMPLETE INVITATION on Slide 7 — triggers closing curtain animation
   const handleRestart = useCallback(() => {
@@ -102,11 +103,19 @@ function App() {
   }, []);
 
   const handleNext = useCallback(() => {
+    if (currentPage === 1) {
+      handleOpenInvitation();
+      return;
+    }
+    if (currentPage === 2) {
+      handleShlokContinue();
+      return;
+    }
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages, handleOpenInvitation, handleShlokContinue]);
 
   const handlePrev = useCallback(() => {
     if (currentPage > 1) {
@@ -117,6 +126,14 @@ function App() {
 
   const handleGoToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
+      if (currentPage === 1 && pageNumber === 2) {
+        handleOpenInvitation();
+        return;
+      }
+      if (currentPage === 2 && pageNumber === 3) {
+        handleShlokContinue();
+        return;
+      }
       setCurrentPage(pageNumber);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -165,11 +182,7 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        if (currentPage === 2) {
-          handleShlokContinue();
-        } else {
-          handleNext();
-        }
+        handleNext();
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         handlePrev();
       }
@@ -177,7 +190,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleNext, handlePrev, handleShlokContinue, currentPage]);
+  }, [handleNext, handlePrev]);
 
   // Touch Swipe Navigation for mobile
   const handleTouchStart = (e) => {
@@ -195,14 +208,8 @@ function App() {
     // Horizontal swipe threshold > 50px and more horizontal than vertical
     if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
       if (diffX > 0) {
-        // Swiped Left -> Next Page
-        if (currentPage === 1) {
-          handleOpenInvitation();
-        } else if (currentPage === 2) {
-          handleShlokContinue();
-        } else {
-          handleNext();
-        }
+        // Swiped Left -> Next Page (delegates to handleOpenInvitation / handleShlokContinue via handleNext)
+        handleNext();
       } else {
         // Swiped Right -> Previous Page
         handlePrev();
@@ -229,27 +236,6 @@ function App() {
 
       {/* Floating Music Controller (starts at 00:25 on Open Invitation) */}
       <MusicController ref={musicRef} currentPage={currentPage} />
-
-      {/* Ceremonial Curtain — opening (Shlok→Ganpati), closing (Slide 7), and static closed */}
-      <CurtainReveal
-        isOpening={isCurtainOpening}
-        isClosing={isCurtainClosing}
-        isClosed={isCurtainClosed}
-        onCloseComplete={handleCloseComplete}
-      />
-
-      {/* VIEW AGAIN overlay — shown on top of closed curtain */}
-      {isCurtainClosed && (
-        <div className="view-again-overlay">
-          <button
-            className="view-again-btn"
-            onClick={handleViewAgain}
-            aria-label="View the invitation again"
-          >
-            VIEW AGAIN
-          </button>
-        </div>
-      )}
 
       {/* Toast Notification for Clipboard */}
       <Toast message={toastMessage} isVisible={isToastVisible} />
@@ -279,6 +265,27 @@ function App() {
         onGoToPage={handleGoToPage}
         onShare={handleShare}
       />
+
+      {/* Ceremonial Curtain — opening (Slide 2→3), closing (Slide 7), and static closed */}
+      <CurtainReveal
+        isOpening={isCurtainOpening}
+        isClosing={isCurtainClosing}
+        isClosed={isCurtainClosed}
+        onCloseComplete={handleCloseComplete}
+      />
+
+      {/* VIEW AGAIN overlay — shown on top of closed curtain */}
+      {isCurtainClosed && (
+        <div className="view-again-overlay">
+          <button
+            className="view-again-btn"
+            onClick={handleViewAgain}
+            aria-label="View the invitation again"
+          >
+            VIEW AGAIN
+          </button>
+        </div>
+      )}
     </div>
   );
 }

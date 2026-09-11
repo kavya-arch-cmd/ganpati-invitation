@@ -5,14 +5,16 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .card {
   position: relative;
   width: 100%;
   max-width: 640px;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
   background: rgba(254, 250, 240, 0.96);
   border: 1.5px solid rgba(184, 134, 36, 0.45);

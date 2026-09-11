@@ -58,6 +58,7 @@
   --section-padding-x: clamp(1.25rem, 4vw, 2.5rem);
   --content-max-width: 960px;
   --card-max-width: 720px;
+  --nav-bar-height: 64px;
 
   /* Transitions */
   --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -140,6 +141,12 @@ button {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  /* Safe-area support for notch/dynamic-island phones */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  box-sizing: border-box;
 }
 
 .page-stage {
@@ -148,12 +155,14 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* Exact viewport height minus the fixed bottom nav (~72px) */
-  height: calc(100vh - 72px);
-  height: calc(100dvh - 72px);
-  max-height: calc(100dvh - 72px);
-  overflow: hidden;
-  padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) clamp(0.5rem, 1vw, 1rem);
+  /* Use CSS var for nav height instead of hardcoded 72px */
+  height: calc(100vh - var(--nav-bar-height));
+  height: calc(100dvh - var(--nav-bar-height));
+  max-height: calc(100dvh - var(--nav-bar-height));
+  /* Allow scroll as last resort instead of hard clipping */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(0.75rem, 2.5vw, 1.5rem) clamp(0.5rem, 1vw, 0.75rem);
   box-sizing: border-box;
   position: relative;
   z-index: 10;
@@ -187,7 +196,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  margin-top: 1rem;
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
   flex-shrink: 0;
   background: linear-gradient(135deg, #B88624 0%, #D4A843 50%, #9E7422 100%);
   color: #FFFFFF;
@@ -240,9 +249,15 @@ button {
 .section-container {
   max-width: var(--content-max-width);
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 /* ---- Decorative Invitation Card Frame ---- */
@@ -344,7 +359,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
   padding: 0.35rem 1rem;
   border-radius: 20px;
   background: rgba(184, 134, 36, 0.10);
@@ -355,6 +370,7 @@ button {
   color: #6B4A12;
   font-weight: 700;
   text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .chapter-badge .dot {
@@ -370,9 +386,10 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin: 1rem auto;
+  margin: clamp(0.4rem, 1.2vh, 1rem) auto;
   width: 100%;
   max-width: 260px;
+  flex-shrink: 0;
 }
 
 .ornament-divider .line {
@@ -492,8 +509,15 @@ button {
 /* === VIEW AGAIN overlay on closed curtain === */
 .view-again-overlay {
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   inset: 0;
-  z-index: 600;
+  z-index: 1100;
   display: flex;
   flex-direction: column;
   align-items: center;

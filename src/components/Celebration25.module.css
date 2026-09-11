@@ -1,9 +1,12 @@
 .section {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .card {
@@ -11,12 +14,13 @@
   border: 1.5px solid rgba(184, 134, 36, 0.45);
   border-radius: 6px;
   box-shadow: var(--shadow-card), 0 0 35px rgba(212, 168, 67, 0.12);
-  padding: clamp(0.75rem, 2vh, 1.5rem) clamp(0.75rem, 3vw, 2.5rem);
+  padding: clamp(0.75rem, 2vh, 1.5rem) clamp(0.65rem, 2.5vw, 2.5rem);
   text-align: center;
   position: relative;
   z-index: 2;
+  width: 100%;
   max-width: 680px;
-  margin: 0 auto;
+  margin: auto;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-sizing: border-box;
@@ -138,24 +142,38 @@
 .dedicationText {
   container-type: inline-size;
   width: 100%;
+  max-width: 100%;
+  align-self: stretch;
   box-sizing: border-box;
   text-align: center;
-  margin: 0.35rem 0 0.65rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.22rem, 0.7vh, 0.45rem);
+  margin: clamp(0.35rem, 1vh, 0.65rem) auto clamp(0.45rem, 1.2vh, 0.75rem);
 }
 
 .dedicationLine {
   display: block;
   white-space: nowrap;
+  text-align: center;
   font-family: var(--font-editorial);
   color: #4A2E10;
   font-style: italic;
   font-weight: 600;
-  line-height: 1.55;
+  line-height: 1.45;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 0;
   /* vw fallback for browsers without container-query support */
-  font-size: clamp(0.72rem, 3.4vw, 1.45rem);
-  /* Container-relative sizing: 3.85% of card content width.
+  font-size: clamp(0.76rem, 3.55vw, 1.18rem);
+  /* Container-relative sizing: 3.95% of card content width.
      Comfortably readable on mobile while guaranteeing all 3 lines fit cleanly without clipping. */
-  font-size: clamp(0.72rem, 3.85cqi, 1.45rem);
+  font-size: clamp(0.76rem, 3.95cqi, 1.18rem);
 }
 
 .flourishCluster {
@@ -179,6 +197,39 @@
   background-color: var(--color-gold);
   transform: rotate(45deg);
   opacity: 0.85;
+}
+
+@media (max-width: 360px) {
+  .card {
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
+  }
+  .dedicationLine {
+    font-size: clamp(0.7rem, 3.35vw, 0.76rem);
+    font-size: clamp(0.7rem, 3.65cqi, 0.76rem);
+  }
+}
+
+@media (max-height: 640px) {
+  .monogramWrapper {
+    width: clamp(100px, 22vw, 150px);
+    height: clamp(100px, 22vw, 150px);
+    margin-bottom: 0.2rem;
+  }
+  .heroNumber {
+    font-size: clamp(2.4rem, 7vw, 3.8rem);
+  }
+  .labelWrapper {
+    margin-bottom: 0.4rem;
+  }
+  .yearsWrapper {
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+  }
+  .dedicationText {
+    margin: 0.2rem auto 0.35rem;
+    gap: 0.18rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

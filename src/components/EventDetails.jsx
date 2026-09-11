@@ -25,7 +25,6 @@ const EventDetails = ({ onNext }) => {
             <div className={styles.cardCornerTL} />
             <div className={styles.cardCornerBR} />
 
-            <div className={styles.dateLabel}>DATE</div>
             <div className={styles.dateContent}>
               <div className={styles.dateText}>14 September 2026</div>
               <span className={styles.smallMuted}>to</span>

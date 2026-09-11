@@ -3,21 +3,22 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .combinedCard {
   max-width: 580px;
   width: 100%;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
   background: rgba(254, 250, 240, 0.94);
   border: 1.5px solid rgba(184, 134, 36, 0.45);
   border-radius: 6px;
   box-shadow: var(--shadow-card), 0 0 35px rgba(212, 168, 67, 0.12);
-  padding: clamp(0.75rem, 2vh, 1.4rem) clamp(1rem, 3.5vw, 2.25rem);
+  padding: clamp(0.6rem, 1.8vh, 1.4rem) clamp(1rem, 3.5vw, 2.25rem);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;

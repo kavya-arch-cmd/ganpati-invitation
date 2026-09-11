@@ -75,7 +75,10 @@ const MusicController = forwardRef(({ autoStart = false, currentPage = 1 }, ref)
   };
 
   return (
-    <div className={styles.musicWrapper}>
+    <div
+      className={styles.musicWrapper}
+      style={(currentPage === 1 || currentPage === 5) ? { display: 'none' } : undefined}
+    >
       {/* Hidden native audio element */}
       <audio
         ref={audioRef}
@@ -85,33 +88,32 @@ const MusicController = forwardRef(({ autoStart = false, currentPage = 1 }, ref)
         onError={handleError}
       />
 
-      {/* Floating Music Toggle Button — hidden on Slide 1 */}
-      <button
-        className={`${styles.musicBtn} ${isPlaying ? styles.playing : ''} ${currentPage === 1 ? styles.hiddenOnCover : ''}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleMusic();
-        }}
-        aria-label={isPlaying ? 'Mute devotional music' : 'Play devotional music'}
-        title={isPlaying ? 'Music ON (Click to Pause)' : 'Music OFF (Click to Play)'}
-      >
-        <span className={styles.soundWaveIcon}>
-          {isPlaying ? (
-            <span className={styles.equalizerBars}>
-              <span className={styles.bar1}></span>
-              <span className={styles.bar2}></span>
-              <span className={styles.bar3}></span>
-            </span>
-          ) : (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-          )}
-        </span>
-        <span className={styles.btnLabel}>{isPlaying ? 'MUSIC ON' : 'MUSIC OFF'}</span>
-      </button>
+      {/* Floating Music Toggle Button — completely unmounted on Slide 1 & 5 */}
+      {currentPage !== 1 && currentPage !== 5 && (
+        <button
+          className={`${styles.musicBtn} ${isPlaying ? styles.playing : ''}`}
+          onClick={(e) => { e.stopPropagation(); toggleMusic(); }}
+          aria-label={isPlaying ? 'Mute devotional music' : 'Play devotional music'}
+          title={isPlaying ? 'Music ON (Click to Pause)' : 'Music OFF (Click to Play)'}
+        >
+          <span className={styles.soundWaveIcon}>
+            {isPlaying ? (
+              <span className={styles.equalizerBars}>
+                <span className={styles.bar1}></span>
+                <span className={styles.bar2}></span>
+                <span className={styles.bar3}></span>
+              </span>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            )}
+          </span>
+          <span className={styles.btnLabel}>{isPlaying ? 'MUSIC ON' : 'MUSIC OFF'}</span>
+        </button>
+      )}
     </div>
   );
 });
